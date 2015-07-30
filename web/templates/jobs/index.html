@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if jobs %}
+
+<!-- Search starts here -->
+	<div class="container search">
+		<div class="row-fluid search-container">
+			<h2 align="center">Explore thousands of jobs... at the click of a button.</h2>
+			<div class="row-fluid search-form-row span7">
+				<form class="form-inline" type="get" action="/search">
+					<div class="span7" align="center">
+						<table>
+							{{ form.as_table }}
+							<tr>
+								<td><input type="text" name="q" class="form-control" placeholder="Job Title, Organisation or Location"></td>
+								<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+								<td><button type="submit" class "btn btn-default">Search Jobs</button></td>
+							</tr>
+						</table>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+<!-- Search ends here -->
+	<hr>
+<!-- Job listing table starts here-->
+<div class="table-responsive" name="job-container">
+	<table class="table table-hover table-condensed table-striped">
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th>Level</th>
+				<th>Organisation</th>
+				<th>Type</th>
+				<th>Experience</th>
+				<th>Location</th>
+				<th>Source</th>
+				<th></th>
+			</tr>
+		</thead>
+		{% for job in jobs %}
+		<tbody>
+			<tr>
+				<td>{{job.title}}</td>
+				<td>{{job.level}}</td>
+				<td>{{job.organisation}}</td>
+				<td>{{job.employment_type}}</td>
+				<td>{{job.experience}}</td>
+				<td>{{job.location}}</td>
+				<td>{{job.source}}</td>
+				<td><a target="_blank" href="{{job.url}}">Apply Now<a></td>
+			</tr>
+		</tbody>
+		{% endfor %}
+	</table><!-- Job listing table ends here -->
+	<!-- Pagination starts here -->
+	<div align="center">
+		<nav>
+			<ul class="pagination" align="center">
+				{% if jobs.has_previous %}
+				<li><a href="?page={{ jobs.previous_page_number }}">Previous</a></li>
+				{% endif %}
+				{% for page in jobs.paginator.page_range %}
+					{% if jobs.number = page %}
+						<li class="active"><a href="?page={{ page }}">{{ page }}</a></li>
+					{% else %}
+						<li><a href="?page={{ page }}">{{ page }}</a><li>
+					{% endif %}
+				{% endfor %}
+				{% if jobs.has_next %}
+					<li><a href="?page={{ jobs.next_page_number }}">Next</a></li>
+				{% endif %}
+			</ul>
+		</nav>
+	</div>
+	<!-- Pagination ends here -->
+</div>
+
+<div>
+	{% else %}
+		<p>No jobs are available.</p>
+	{% endif %}
+
+{% endblock %}

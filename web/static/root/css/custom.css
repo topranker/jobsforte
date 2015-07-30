@@ -1,0 +1,30 @@
+body {
+  font-family: 'Open Sans', Tahoma, sans-serif;
+  font-size: 12.5px;
+  line-height: 1.42857143;
+  color: #333;
+  background-color: #fff;
+}
+
+.table-responsive
+{
+    overflow-x: auto;
+}
+.form-control
+{
+	width: 55%;
+}
+
+/*
+.table-responsive
+{
+    overflow-x: auto;
+    border: 1px solid #dddddd;
+}
+
+.table-responsive td, .table-responsive th 
+{ 
+	white-space:nowrap; 
+}
+*/
+
