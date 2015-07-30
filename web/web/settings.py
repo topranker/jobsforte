@@ -102,8 +102,7 @@ TEMPLATE_DIRS = (
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static","root")
-#/Users/tito/Projects/jobsforte/web/static/root/
+
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static","static"),
-    #'/Users/tito/Projects/jobsforte/web/static/static',
 )
